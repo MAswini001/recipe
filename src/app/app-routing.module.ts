@@ -10,8 +10,8 @@ const appRoutes:Routes=[
   {path:'',redirectTo:'/recipes',pathMatch:'full'},
   {path:'recipes',component:RecipesComponent,children:[
     {path:'',component:RecipeStartComponent},
-    {path:':id',component:RecipeDetailsComponent},
     {path:'new',component:RecipeEditComponent},
+    {path:':id',component:RecipeDetailsComponent},
     {path:':id/edit',component:RecipeEditComponent}
   ]},
   {path:'shopping-list',component:ShoppingListComponent}

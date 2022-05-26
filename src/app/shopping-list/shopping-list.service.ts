@@ -4,6 +4,7 @@ import { Ingredient } from "../shared/ingredient.model";
 
 export class shoppingListService{
     ingredientChanged=new Subject<Ingredient[]>();
+    startedEditing =new Subject<number>();
 
 
  private ingredients: Ingredient[] = [
@@ -15,16 +16,28 @@ export class shoppingListService{
      getIngredients(){
          return this.ingredients.slice();
      }
-     addIngredients(ingredient:Ingredient){
+     getIngredient(index:number){
+         return this.ingredients[index];
+
+     }
+     addIngredient(ingredient:Ingredient){
          this.ingredients.push(ingredient);
          this.ingredientChanged.next(this.ingredients.slice());
      }
-     addIngredient(ingredients:Ingredient[]){
+     addIngredients(ingredients:Ingredient[]){
         // for(let ingredient of ingredients){
           //   this.addIngredient(Ingredient);
          //}
          this.ingredients.push(...ingredients);
          this.ingredientChanged.next(this.ingredients.slice());
 
+     }
+     updateIngredient(index:number,newIngrediant:Ingredient){
+         this.ingredients[index]=newIngrediant;
+         this.ingredientChanged.next(this.ingredients.slice());
+     }
+     deleteIngredient(index:number){
+         this.ingredients.splice(index,1);
+         this.ingredientChanged.next(this.ingredients.slice())
      }
 }
