@@ -12,24 +12,32 @@ export class RecipeService{
  recipesChanged=new Subject<Recipe[]>();   
 
 
- private  recipes:Recipe[]=[
+ //private  recipes:Recipe[]=[
 
-        new Recipe('This is Recipe',
-        'this is simply test',
-        'https://purewows3.imgix.net/images/articles/2017_03/healthy_comfortfood_enchiladacasserole.jpg',
-        [
-         new Ingredient('Meat',1),
-         new Ingredient('french Fries',1)
-        ]),
-        new Recipe('Another Test Recipe','this is simply test','https://purewows3.imgix.net/images/articles/2017_03/healthy_comfortfood_enchiladacasserole.jpg',
-        [
-            new Ingredient('Buns',2),
-            new Ingredient('Meat',1)
-        ])
+        //new Recipe('This is Recipe',
+        //'this is simply test',
+        //'https://purewows3.imgix.net/images/articles/2017_03/healthy_comfortfood_enchiladacasserole.jpg',
+        //[
+        // new Ingredient('Meat',1),
+        // new Ingredient('french Fries',1)
+        //]),
+        //new Recipe('Another Test Recipe','this is simply test','https://purewows3.imgix.net/images/articles/2017_03/healthy_comfortfood_enchiladacasserole.jpg',
+        //[
+           // new Ingredient('Buns',2),
+           // new Ingredient('Meat',1)
+        //])
     
-    ];
+    //];
+    private recipes:Recipe[] = [];
 
     constructor(private slService:shoppingListService){}
+
+    setRecipes(recipes:Recipe[]){
+      this.recipes=recipes;
+      this.recipesChanged.next(this.recipes.slice());
+    }
+
+
     getRecipes(){
         return this.recipes.slice();
     }
